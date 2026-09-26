@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -7,7 +9,12 @@ export function Hero() {
       <p className="max-w-md text-foreground/70">
         Next.js, Tailwind CSS, TypeScript, oxlint, Prettier and Zod env — ready to build.
       </p>
-      <Button>Get started</Button>
+      <div className="flex gap-3">
+        <Button>Get started</Button>
+        <Button variant="outline" nativeButton={false} render={<Link href="/kitchen-sink" />}>
+          Kitchen sink
+        </Button>
+      </div>
     </section>
   );
 }

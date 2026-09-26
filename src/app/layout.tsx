@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { Toaster } from "@/components/ui/toast";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
 import { env } from "@/env";
 import { cn } from "@/lib/utils";
@@ -43,9 +44,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={cn(geistSans.variable, geistMono.variable, "font-sans antialiased")}>
       <body>
-        <Toaster>
-          <ViewTransition>{children}</ViewTransition>
-        </Toaster>
+        <ViewTransition>
+          <TooltipProvider delay={100}>{children}</TooltipProvider>
+        </ViewTransition>
+        <Toaster />
       </body>
     </html>
   );
