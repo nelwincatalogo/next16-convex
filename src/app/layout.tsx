@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
@@ -40,7 +41,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={cn(geistSans.variable, geistMono.variable, "font-sans antialiased")}>
-      <body>{children}</body>
+      <body>
+        <ViewTransition>{children}</ViewTransition>
+      </body>
     </html>
   );
 }
