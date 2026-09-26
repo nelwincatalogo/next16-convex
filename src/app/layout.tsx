@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { siteConfig } from "@/config/site";
+import { env } from "@/env";
+import { cn } from "@/lib/utils";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,13 +18,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Template",
-  description: "Next.js + Tailwind CSS template",
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  openGraph: {
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    // images: '/banner.png',
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" className={cn(geistSans.variable, geistMono.variable, "antialiased")}>
       <body>{children}</body>
     </html>
   );
