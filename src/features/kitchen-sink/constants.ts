@@ -27,3 +27,11 @@ export const FAQ = [
     answer: "Yes — edit the CSS variables in globals.css.",
   },
 ];
+
+export const TOAST_TYPES = [
+  { type: "success", title: "Saved", description: "Your changes are live." },
+  { type: "info", title: "Heads up", description: "A new version is available." },
+  { type: "warning", title: "Careful", description: "Your session expires soon." },
+  { type: "error", title: "Failed", description: "Something went wrong." },
+  { type: "loading", title: "Loading", description: "Please wait..." },
+] as const;

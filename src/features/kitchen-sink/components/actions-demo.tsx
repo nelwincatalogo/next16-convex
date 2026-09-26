@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toast";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
-import { BADGE_VARIANTS, BUTTON_VARIANTS } from "../constants";
+import { BADGE_VARIANTS, BUTTON_VARIANTS, TOAST_TYPES } from "../constants";
 import { Section } from "./section";
 
 export function ActionsDemo() {
@@ -25,15 +25,19 @@ export function ActionsDemo() {
           </Badge>
         ))}
       </Section>
-      <Section title="Toast & Tooltip">
-        <Button
-          variant="outline"
-          onClick={() =>
-            toast.add({ title: "Saved", description: "Your changes are live.", type: "success" })
-          }
-        >
-          Show toast
-        </Button>
+      <Section title="Toasts">
+        {TOAST_TYPES.map(({ type, title, description }) => (
+          <Button
+            key={type}
+            variant="outline"
+            className="capitalize"
+            onClick={() => toast.add({ type, title, description })}
+          >
+            {type}
+          </Button>
+        ))}
+      </Section>
+      <Section title="Tooltip">
         <Tooltip>
           <TooltipTrigger render={<Button variant="outline" />}>Hover me</TooltipTrigger>
           <TooltipContent>Tooltip content</TooltipContent>
