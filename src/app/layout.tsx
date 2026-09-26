@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={cn(geistSans.variable, geistMono.variable, "antialiased")}>
+    <html lang="en" className={cn(geistSans.variable, geistMono.variable, "font-sans antialiased")}>
       <body>{children}</body>
     </html>
   );
