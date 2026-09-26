@@ -13,7 +13,7 @@
     "",
     "^[./]"
   ],
-  "importOrderTypeScriptVersion": "5.0.0",
+  "importOrderTypeScriptVersion": "7.0.0",
   "tailwindStylesheet": "./src/app/globals.css",
   "tailwindFunctions": ["cn", "clsx"]
 }
