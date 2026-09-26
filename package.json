@@ -12,6 +12,7 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit && tsc --noEmit -p convex",
     "dev:convex": "convex dev",
+    "dev:all": "run-p dev dev:convex",
     "convex:dashboard": "convex dashboard"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "npm-run-all2": "^9.0.3",
     "oxlint": "^1.85.0",
     "prettier": "^3.9.9",
     "prettier-plugin-tailwindcss": "^0.8.1",
