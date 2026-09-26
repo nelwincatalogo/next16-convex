@@ -21,7 +21,27 @@
       {
         "allow": ["**/*.css", "./src/env"]
       }
-    ]
+    ],
+    "no-underscore-dangle": [
+      "warn",
+      {
+        "allow": ["_id", "_creationTime"]
+      }
+    ],
+    "jsx-a11y/control-has-associated-label": "off"
   },
-  "ignorePatterns": [".next", "node_modules", "next-env.d.ts"]
+  "ignorePatterns": [".next", "node_modules", "next-env.d.ts", "convex/_generated"],
+  "overrides": [
+    {
+      "files": ["src/components/ui/**", "src/hooks/**"],
+      "rules": {
+        "jsx-a11y/prefer-tag-over-role": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "react/set-state-in-effect": "off",
+        "no-shadow": "off",
+        "jsx-a11y/label-has-associated-control": "off"
+      }
+    }
+  ]
 }

@@ -1,9 +1,12 @@
 import { ViewTransition } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 
 import { Toaster } from "@/components/ui/toast";
 import { siteConfig } from "@/config/site";
+import { ConvexClientProvider } from "@/core/providers/convex-provider";
+import { UiProviders } from "@/core/providers/ui-providers";
 import { env } from "@/env";
 import { cn } from "@/lib/utils";
 
@@ -41,12 +44,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={cn(geistSans.variable, geistMono.variable, "font-sans antialiased")}>
-      <body>
-        <Toaster>
-          <ViewTransition>{children}</ViewTransition>
-        </Toaster>
-      </body>
-    </html>
+    <ConvexAuthNextjsServerProvider>
+      <html
+        lang="en"
+        className={cn(geistSans.variable, geistMono.variable, "font-sans antialiased")}
+      >
+        <body>
+          <ConvexClientProvider>
+            <UiProviders>
+              <Toaster>
+                <ViewTransition>{children}</ViewTransition>
+              </Toaster>
+            </UiProviders>
+          </ConvexClientProvider>
+        </body>
+      </html>
+    </ConvexAuthNextjsServerProvider>
   );
 }

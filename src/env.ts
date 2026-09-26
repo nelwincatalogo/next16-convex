@@ -6,11 +6,16 @@ const serverSchema = z.object({
 
 const clientSchema = z.object({
   NEXT_PUBLIC_APP_URL: z.url().default("http://localhost:3000"),
+  NEXT_PUBLIC_CONVEX_URL: z.url(),
 });
+
+// Helper to trim strings and convert empty values to undefined
+const normalize = (value: string | undefined) => (value?.trim() ? value : undefined);
 
 // Client vars must be referenced explicitly so Next.js can inline them.
 const clientEnv = {
-  NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+  NEXT_PUBLIC_APP_URL: normalize(process.env.NEXT_PUBLIC_APP_URL),
+  NEXT_PUBLIC_CONVEX_URL: normalize(process.env.NEXT_PUBLIC_CONVEX_URL),
 };
 
 const isServer = typeof window === "undefined";
