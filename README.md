@@ -19,19 +19,19 @@ Next.js 16 · Tailwind CSS 4 · TypeScript · oxlint · Prettier · Zod env
 ## Use this template
 
 ```bash
-npx create-turbo@latest --example https://github.com/nelwincatalogo/next16-convex [project-name-here]
+yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex
 ```
 
 ## With Shadcn
 
-```
-npx create-turbo@latest --example https://github.com/nelwincatalogo/next16-convex/tree/with-shadcn [project-name-here]
+```bash
+yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/with-shadcn
 ```
 
 ## Convex with Auth
 
-```
-npx create-turbo@latest --example https://github.com/nelwincatalogo/next16-convex/tree/convex-with-auth [project-name-here]
+```bash
+yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/convex-with-auth
 ```
 
 ## Setup

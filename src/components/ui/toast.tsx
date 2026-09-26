@@ -138,15 +138,15 @@ function ToastIcon({ type }: { type: string | undefined }) {
   let icon: React.ReactNode = null;
 
   if (type === "success") {
-    icon = <CircleCheckIcon aria-hidden="true" />;
+    icon = <CircleCheckIcon className="text-green-500" aria-hidden="true" />;
   }
 
   if (type === "info") {
-    icon = <InfoIcon aria-hidden="true" />;
+    icon = <InfoIcon className="text-blue-500" aria-hidden="true" />;
   }
 
   if (type === "warning") {
-    icon = <TriangleAlertIcon aria-hidden="true" />;
+    icon = <TriangleAlertIcon className="text-amber-500" aria-hidden="true" />;
   }
 
   if (type === "error") {
@@ -206,17 +206,17 @@ const createToastManager = ToastPrimitive.createToastManager;
 const useToastManager = ToastPrimitive.useToastManager;
 
 export {
-  Toaster,
+  createToastManager,
   Toast,
+  toast,
   ToastAction,
   ToastClose,
   ToastContent,
   ToastDescription,
+  Toaster,
   ToastPortal,
   ToastProvider,
   ToastTitle,
   ToastViewport,
-  createToastManager,
-  toast,
   useToastManager,
 };
