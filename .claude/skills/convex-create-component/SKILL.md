@@ -1,7 +1,6 @@
 ---
 name: convex-create-component
-description:
-  Builds reusable Convex components with isolated tables and app-facing APIs.
+description: Builds reusable Convex components with isolated tables and app-facing APIs.
   Use for new components, reusable backend modules, integrations, or component
   boundary work.
 ---
@@ -103,6 +102,7 @@ export default defineSchema({
 ```ts
 // convex/components/notifications/lib.ts
 import { v } from "convex/values";
+
 import { mutation, query } from "./_generated/server.js";
 
 export const send = mutation({
@@ -131,9 +131,7 @@ export const listUnread = query({
   handler: async (ctx, args) => {
     return await ctx.db
       .query("notifications")
-      .withIndex("by_user_read", (q) =>
-        q.eq("userId", args.userId).eq("read", false),
-      )
+      .withIndex("by_user_read", (q) => q.eq("userId", args.userId).eq("read", false))
       .collect();
   },
 });
@@ -142,6 +140,7 @@ export const listUnread = query({
 ```ts
 // convex/convex.config.ts
 import { defineApp } from "convex/server";
+
 import notifications from "./components/notifications/convex.config.js";
 
 const app = defineApp();
@@ -152,10 +151,11 @@ export default app;
 
 ```ts
 // convex/notifications.ts  (app-side wrapper)
-import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
-import { components } from "./_generated/api";
 import { getAuthUserId } from "@convex-dev/auth/server";
+import { v } from "convex/values";
+
+import { components } from "./_generated/api";
+import { mutation, query } from "./_generated/server";
 
 export const sendNotification = mutation({
   args: { message: v.string() },
