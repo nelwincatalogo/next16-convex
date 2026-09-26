@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Template
 
-## Getting Started
+Next.js 16 · Tailwind CSS 4 · TypeScript · oxlint · Prettier · Zod env
 
-First, run the development server:
+## Setup
 
 ```bash
-npm run dev
-# or
+yarn install
+cp .env.example .env.local
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script              | What                                                       |
+| ------------------- | ---------------------------------------------------------- |
+| `yarn lint`         | oxlint (unused imports = error)                            |
+| `yarn lint:fix`     | oxlint --fix + Prettier (sorts imports & Tailwind classes) |
+| `yarn format:check` | Prettier check                                             |
+| `yarn typecheck`    | tsc                                                        |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+src/
+  app/                 # routes only
+  components/ui/       # shared, reusable UI
+  features/<name>/     # feature-owned code
+    components/
+    hooks/ lib/ types/ # add as needed
+    index.ts           # public exports
+  lib/utils.ts         # cn()
+  env.ts               # Zod-validated env
+```
 
-To learn more about Next.js, take a look at the following resources:
+Import with `@/` (e.g. `import { env } from "@/env"`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Env
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add vars to the schemas in `src/env.ts`. Client vars need the `NEXT_PUBLIC_` prefix and must be added to `clientEnv`. Invalid env fails at startup.
