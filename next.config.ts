@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   experimental: {
     // Nudge on upgrades that fix known vulnerabilities.
     agentUpgrade: "security",
+    // Turbopack: compile dynamic imports on demand, GC stale cache, run plugins in worker threads.
+    turbopackLazyDynamicImports: true,
+    turbopackGc: true,
+    turbopackPluginRuntimeStrategy: "workerThreads",
   },
 };
 
