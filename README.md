@@ -100,3 +100,22 @@ npx @convex-dev/auth --web-server-url http://localhost:3000
 ```
 
 This sets `SITE_URL`, `JWT_PRIVATE_KEY` and `JWKS` on the deployment.
+
+## Deploy (Docker / Coolify)
+
+Ships a multi-stage `Dockerfile` (Next.js standalone, Node 24, port 3000) and a `.nvmrc`.
+
+The image builds the Next.js frontend only. `convex/` is deployed separately, by hand.
+
+Prod checklist:
+
+1. Deploy the backend first: `yarn deploy:convex`. It pushes functions and schema to the prod deployment, and needs `npx convex login` or `CONVEX_DEPLOY_KEY` set. Run it before redeploying Coolify whenever `convex/` changes.
+2. Set the prod auth env once: `npx @convex-dev/auth --prod --web-server-url https://your-domain`. This sets `SITE_URL`, `JWT_PRIVATE_KEY` and `JWKS` on the prod deployment, so `SITE_URL` points at the production domain, not localhost.
+3. In Coolify: build pack **Dockerfile**, exposed port `3000`, and set both `NEXT_PUBLIC_APP_URL` and `NEXT_PUBLIC_CONVEX_URL` as **build** variables — both are inlined into the client bundle at build time. Use the **prod** Convex URL from the Convex dashboard, not the dev one in `.env.local`.
+
+Local build/run:
+
+```bash
+docker build --build-arg NEXT_PUBLIC_APP_URL=https://example.com --build-arg NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud -t next16-convex .
+docker run -p 3000:3000 next16-convex
+```

@@ -2,6 +2,9 @@
   "name": "next16-convex",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24.22.1"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,7 +16,8 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p convex",
     "dev:convex": "convex dev",
     "dev:all": "run-p dev dev:convex",
-    "convex:dashboard": "convex dashboard"
+    "convex:dashboard": "convex dashboard",
+    "deploy:convex": "convex deploy"
   },
   "dependencies": {
     "@auth/core": "^0.41",
