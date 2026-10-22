@@ -58,3 +58,14 @@ Import with `@/` (e.g. `import { env } from "@/env"`).
 ## Env
 
 Add vars to the schemas in `src/env.ts`. Client vars need the `NEXT_PUBLIC_` prefix and must be added to `clientEnv`. Invalid env fails at startup.
+
+## Deploy (Docker / Coolify)
+
+Ships a multi-stage `Dockerfile` (Next.js standalone, Node 24, port 3000) and a `.nvmrc`.
+
+In Coolify: build pack **Dockerfile**, exposed port `3000`, and set `NEXT_PUBLIC_APP_URL` as a **build** variable — it is inlined into the client bundle at build time.
+
+```bash
+docker build --build-arg NEXT_PUBLIC_APP_URL=https://example.com -t next16-convex .
+docker run -p 3000:3000 next16-convex
+```

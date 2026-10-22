@@ -4,6 +4,8 @@ import type { NextConfig } from "next";
 import "./src/env";
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle for Docker.
+  output: "standalone",
   // Next.js 16.4 recommended model (default in new apps).
   cacheComponents: true,
   partialPrefetching: true,
