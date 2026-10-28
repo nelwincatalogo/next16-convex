@@ -2,15 +2,19 @@
 # Float on the major so rebuilds get Node security patches.
 FROM node:24-bookworm-slim AS base
 
+# Enable corepack so pnpm (from the packageManager field) is available in every stage.
+FROM base AS base-with-pnpm
+RUN corepack enable pnpm
+
 # Install dependencies from the lockfile only.
-FROM base AS deps
+FROM base-with-pnpm AS deps
 WORKDIR /app
-COPY package.json yarn.lock ./
-# Cache yarn's package cache across builds.
-RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install --frozen-lockfile
+COPY package.json pnpm-lock.yaml ./
+# Cache pnpm's store across builds.
+RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
 
 # Build the standalone bundle.
-FROM base AS builder
+FROM base-with-pnpm AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -21,10 +25,10 @@ ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Cache Next's build output across builds.
-RUN --mount=type=cache,target=/app/.next/cache yarn build
+RUN --mount=type=cache,target=/app/.next/cache pnpm build
 
 # Minimal runtime image.
-FROM base AS runner
+FROM base-with-pnpm AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production

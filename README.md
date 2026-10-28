@@ -2,42 +2,42 @@
 
 Next.js 16 · Tailwind CSS 4 · TypeScript · oxlint · Prettier · Zod env
 
-### Package Manager: `yarn`
+### Package Manager: `pnpm`
 
 ## Use this template
 
 ```bash
-yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex
+pnpm create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex
 ```
 
 ## With Shadcn
 
 ```bash
-yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/with-shadcn
+pnpm create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/with-shadcn
 ```
 
 ## Convex with Auth
 
 ```bash
-yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/convex-with-auth
+pnpm create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/convex-with-auth
 ```
 
 ## Setup
 
 ```bash
-yarn install
+pnpm install
 cp .env.example .env.local
-yarn dev
+pnpm dev
 ```
 
 ## Scripts
 
-| Script              | What                                                       |
-| ------------------- | ---------------------------------------------------------- |
-| `yarn lint`         | oxlint (unused imports = error)                            |
-| `yarn lint:fix`     | oxlint --fix + Prettier (sorts imports & Tailwind classes) |
-| `yarn format:check` | Prettier check                                             |
-| `yarn typecheck`    | tsc                                                        |
+| Script               | What                                                       |
+| -------------------- | ---------------------------------------------------------- |
+| `pnpm lint`          | oxlint (unused imports = error)                            |
+| `pnpm lint:fix`      | oxlint --fix + Prettier (sorts imports & Tailwind classes) |
+| `pnpm format:check`  | Prettier check                                             |
+| `pnpm typecheck`     | tsc                                                        |
 
 ## Structure
 
