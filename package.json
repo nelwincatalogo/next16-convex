@@ -20,7 +20,7 @@
     "deploy:convex": "convex deploy"
   },
   "dependencies": {
-    "@auth/core": "^0.41.0",
+    "@auth/core": "^0.41.3",
     "@base-ui/react": "^1.9.0",
     "@convex-dev/auth": "^0.0.96",
     "@hookform/resolvers": "^5.9.2",
