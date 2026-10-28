@@ -14,42 +14,42 @@ npx create-next-app@latest --example https://github.com/nelwincatalogo/next16-co
 
 Next.js 16 · Tailwind CSS 4 · TypeScript · oxlint · Prettier · Zod env
 
-### Package Manager: `yarn`
+### Package Manager: `pnpm`
 
 ## Use this template
 
 ```bash
-yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex
+pnpm create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex
 ```
 
 ## With Shadcn
 
 ```bash
-yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/with-shadcn
+pnpm create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/with-shadcn
 ```
 
 ## Convex with Auth
 
 ```bash
-yarn create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/convex-with-auth
+pnpm create next-app [project-name-here] -e https://github.com/nelwincatalogo/next16-convex/tree/convex-with-auth
 ```
 
 ## Setup
 
 ```bash
-yarn install
+pnpm install
 cp .env.example .env.local
-yarn dev
+pnpm dev
 ```
 
 ## Scripts
 
-| Script              | What                                                       |
-| ------------------- | ---------------------------------------------------------- |
-| `yarn lint`         | oxlint (unused imports = error)                            |
-| `yarn lint:fix`     | oxlint --fix + Prettier (sorts imports & Tailwind classes) |
-| `yarn format:check` | Prettier check                                             |
-| `yarn typecheck`    | tsc                                                        |
+| Script               | What                                                       |
+| -------------------- | ---------------------------------------------------------- |
+| `pnpm lint`          | oxlint (unused imports = error)                            |
+| `pnpm lint:fix`      | oxlint --fix + Prettier (sorts imports & Tailwind classes) |
+| `pnpm format:check`  | Prettier check                                             |
+| `pnpm typecheck`     | tsc                                                        |
 
 ## Structure
 
@@ -76,9 +76,9 @@ Add vars to the schemas in `src/env.ts`. Client vars need the `NEXT_PUBLIC_` pre
 Run both in separate terminals:
 
 ```bash
-yarn dev:convex        # first run: log in / pick a project, writes NEXT_PUBLIC_CONVEX_URL to .env.local
-yarn dev
-yarn convex:dashboard  # open the Convex dashboard
+pnpm dev:convex       # first run: log in / pick a project, writes NEXT_PUBLIC_CONVEX_URL to .env.local
+pnpm dev
+pnpm convex:dashboard # open the Convex dashboard
 ```
 
 - Backend lives in `convex/`, one folder per module: `convex/<module>/{schema,queries,mutations}.ts`. Register each table in `convex/schema.ts`.
@@ -109,7 +109,7 @@ The image builds the Next.js frontend only. `convex/` is deployed separately, by
 
 Prod checklist:
 
-1. Deploy the backend first: `yarn deploy:convex`. It pushes functions and schema to the prod deployment, and needs `npx convex login` or `CONVEX_DEPLOY_KEY` set. Run it before redeploying Coolify whenever `convex/` changes.
+1. Deploy the backend first: `pnpm deploy:convex`. It pushes functions and schema to the prod deployment, and needs `npx convex login` or `CONVEX_DEPLOY_KEY` set. Run it before redeploying Coolify whenever `convex/` changes.
 2. Set the prod auth env once: `npx @convex-dev/auth --prod --web-server-url https://your-domain`. This sets `SITE_URL`, `JWT_PRIVATE_KEY` and `JWKS` on the prod deployment, so `SITE_URL` points at the production domain, not localhost.
 3. In Coolify: build pack **Dockerfile**, exposed port `3000`, and set both `NEXT_PUBLIC_APP_URL` and `NEXT_PUBLIC_CONVEX_URL` as **build** variables — both are inlined into the client bundle at build time. Use the **prod** Convex URL from the Convex dashboard, not the dev one in `.env.local`.
 
